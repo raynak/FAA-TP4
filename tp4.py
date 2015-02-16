@@ -30,6 +30,12 @@ def oracle(x):
 def sigmoide(t, A, b):
     return (1.0/(1.0+np.exp(-((A*t)+b))))
 
+def sigmoideF(theta):
+    return (1.0/(1.0+np.exp(-fTheta(theta))))
+
+def sigmoideThetaTransposeX(theta, x):
+    return sigmoide(x, theta, fTheta)
+
 def pasT(pas):
     return 0.5/(0.5+pas)
 
@@ -47,11 +53,9 @@ def fTheta(theta):
    return np.dot(data.T, theta)
 
 
-# def erreurLogis(theta):
-#     print "not yet"
-
-# def descenteGrad():
-
+def descenteGrad(theta):
+    print("not yet")
+    
 
 if __name__ == '__main__':
     global data
@@ -62,18 +66,9 @@ if __name__ == '__main__':
     init()
     theta=np.array([0,0,0])
 
-    theta=nextTheta(theta, 0.5)
-    print theta
-       
-    theta=nextTheta(theta, 0.4)
-    print theta
-
-    theta=nextTheta(theta, 0.4)
-    print theta
-
-    ftheta=fTheta(theta)
-
-    plt.plot(ftheta, '*')
+    theta=descenteGrad(theta)
+    
+    plt.plot(sigmoideF(theta), '*')
 
     #plt.plot(data[1], sigmoide(data[1],1,-170),'*')
     plt.show()
